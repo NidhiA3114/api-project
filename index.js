@@ -1,12 +1,17 @@
+// Import necessary modules
 const express = require('express');
-const cors = require('cors'); // Import cors
+const cors = require('cors');
+
+// Initialize the Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS
 app.use(cors());
 
+// Define the API route
 app.get('/api/products', (req, res) => {
+  console.log('API Route Accessed'); // Log when the route is accessed
   const products = [
     { id: 1, name: 'Product 1', price: 10 },
     { id: 2, name: 'Product 2', price: 20 },
@@ -14,12 +19,7 @@ app.get('/api/products', (req, res) => {
   res.json(products);
 });
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
-
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
